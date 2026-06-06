@@ -93,10 +93,6 @@ export const metadata: Metadata = {
   },
 
   category: 'technology',
-
-  other: {
-    'google-site-verification': 'googled02585c315a046f4', // Google Search Console se replace karo
-  },
 }
 
 export const viewport: Viewport = {
