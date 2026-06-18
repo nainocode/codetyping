@@ -88,19 +88,29 @@ export default function DashboardPage() {
   const [isLoading, setIsLoading] = useState(true)
 
   // ── Auth guard ────────────────────────────────────────────────────────────
-  useEffect(() => {
-    if (status === "loading") return
+ // Sync JWT from OAuth session into localStorage — PEHLE sync karo
+useEffect(() => {
+  if (session?.backendToken) {
+    storeToken(session.backendToken)
+  }
+}, [session?.backendToken])
+
+// ── Auth guard — sync ke BAAD check karo ─────────────────────────────────
+useEffect(() => {
+  if (status === "loading") return
+  
+  // Agar authenticated hai toh kabhi redirect mat karo
+  if (status === "authenticated") return
+  
+  // Unauthenticated hai — thoda wait karo token sync ke liye
+  const timer = setTimeout(() => {
     if (status === "unauthenticated" && !getToken()) {
       router.push("/login")
     }
-  }, [status, router])
+  }, 500) // 500ms wait — token sync hone do
 
-  // Sync JWT from OAuth session into localStorage
-  useEffect(() => {
-    if (session?.backendToken) {
-      storeToken(session.backendToken)
-    }
-  }, [session?.backendToken])
+  return () => clearTimeout(timer)
+}, [status, router])
 
   // ── Achievements build karo ───────────────────────────────────────────────
   const buildAchievements = (s: UserStats) => {
