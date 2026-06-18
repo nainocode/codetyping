@@ -18,9 +18,13 @@ export const authOptions: NextAuthOptions = {
     }),
   ],
   secret: process.env.NEXTAUTH_SECRET,
+  session: {
+    strategy: "jwt",
+  },
   callbacks: {
-    async jwt({ token, user }) {
-      if (user?.email) {
+    async jwt({ token, user, account }) {
+      // Sirf pehli baar — jab user login karta hai
+      if (account && user?.email) {
         try {
           await connectDB()
           let dbUser = await User.findOne({ email: user.email.toLowerCase() })
@@ -47,10 +51,10 @@ export const authOptions: NextAuthOptions = {
       return token
     },
     async session({ session, token }) {
-      if (token.userId && session.user) {
-        session.user.id = token.userId as string
+      if (session.user) {
+        session.user.id = (token.userId as string) ?? ""
+        session.backendToken = token.backendToken as string | undefined
       }
-      session.backendToken = token.backendToken as string | undefined
       return session
     },
   },
