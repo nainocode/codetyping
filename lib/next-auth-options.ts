@@ -21,23 +21,28 @@ export const authOptions: NextAuthOptions = {
   callbacks: {
     async jwt({ token, user }) {
       if (user?.email) {
-        await connectDB()
-        let dbUser = await User.findOne({ email: user.email.toLowerCase() })
+        try {
+          await connectDB()
+          let dbUser = await User.findOne({ email: user.email.toLowerCase() })
 
-        if (!dbUser) {
-          dbUser = await User.create({
-            name: user.name || "User",
-            email: user.email.toLowerCase(),
-            password: crypto.randomBytes(32).toString("hex"),
-            avatar: user.image ?? undefined,
-          })
-        } else if (user.image && !dbUser.avatar) {
-          dbUser.avatar = user.image
-          await dbUser.save()
+          if (!dbUser) {
+            dbUser = await User.create({
+              name: user.name || "User",
+              email: user.email.toLowerCase(),
+              password: crypto.randomBytes(32).toString("hex"),
+              avatar: user.image ?? undefined,
+            })
+          } else if (user.image && !dbUser.avatar) {
+            dbUser.avatar = user.image
+            await dbUser.save()
+          }
+
+          token.userId = dbUser._id.toString()
+          token.backendToken = generateToken(dbUser)
+
+        } catch (error) {
+          console.error("JWT Callback MongoDB Error:", error)
         }
-
-        token.userId = dbUser._id.toString()
-        token.backendToken = generateToken(dbUser)
       }
       return token
     },

@@ -46,7 +46,6 @@ export async function GET(request: NextRequest) {
     )
 
   } catch (error: any) {
-    console.error('Get user error:', error)
     return NextResponse.json(
       { error: 'Invalid token' },
       { status: 401 }

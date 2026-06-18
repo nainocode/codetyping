@@ -6,9 +6,7 @@ import { generateToken } from '@/lib/jwt'
 
 export async function POST(request: NextRequest) {
   try {
-    console.log('Registration API called')
     const body = await request.json()
-    console.log('Request body:', { ...body, password: '***' })
     
     const { name, email, password } = body
 
@@ -35,12 +33,9 @@ export async function POST(request: NextRequest) {
       )
     }
 
-    console.log('Connecting to database...')
     // Connect to database
     await connectDB()
-    console.log('Database connected')
 
-    console.log('Checking if user exists:', email)
     // Check if user already exists
     const existingUser = await User.findOne({ email: email.toLowerCase() })
     if (existingUser) {
@@ -50,7 +45,6 @@ export async function POST(request: NextRequest) {
       )
     }
 
-    console.log('Creating new user...')
     // Create new user
     const user = new User({
       name,
@@ -58,13 +52,10 @@ export async function POST(request: NextRequest) {
       password
     })
 
-    console.log('Saving user to database...')
     await user.save()
-    console.log('User saved successfully:', user._id)
 
     // Generate token
     const token = generateToken(user)
-    console.log('Token generated')
 
     // Remove password from response
     const userResponse = {
@@ -76,7 +67,6 @@ export async function POST(request: NextRequest) {
       createdAt: user.createdAt
     }
 
-    console.log('Sending success response')
     return NextResponse.json(
       {
         message: 'User registered successfully',
@@ -87,7 +77,6 @@ export async function POST(request: NextRequest) {
     )
 
   } catch (error: any) {
-    console.error('Registration error:', error)
     return NextResponse.json(
       { error: 'Internal server error' },
       { status: 500 }
