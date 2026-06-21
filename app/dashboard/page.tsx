@@ -344,9 +344,9 @@ export default function DashboardPage() {
               <CardHeader><CardTitle className="flex items-center gap-2"><TrendingUp className="w-5 h-5 text-primary" />Progress This Week</CardTitle></CardHeader>
               <CardContent>
                 {progressData.length === 0 ? (
-                  <div className="h-[300px] flex flex-col items-center justify-center gap-3 text-muted-foreground"><TrendingUp className="w-12 h-12 opacity-20" /><p>Complete your first session to see progress here.</p></div>
+                  <div className="h-75 flex flex-col items-center justify-center gap-3 text-muted-foreground"><TrendingUp className="w-12 h-12 opacity-20" /><p>Complete your first session to see progress here.</p></div>
                 ) : (
-                  <div className="h-[300px]">
+                  <div className="h-75">
                     <ResponsiveContainer width="100%" height="100%">
                       <AreaChart data={progressData}>
                         <defs><linearGradient id="wpmGradient" x1="0" y1="0" x2="0" y2="1"><stop offset="5%" stopColor="oklch(0.72 0.19 160)" stopOpacity={0.3} /><stop offset="95%" stopColor="oklch(0.72 0.19 160)" stopOpacity={0} /></linearGradient></defs>

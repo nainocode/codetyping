@@ -108,7 +108,7 @@ export default function PracticePage() {
                   <span className="text-sm text-muted-foreground">Settings:</span>
                 </div>
                 <Select value={selectedLanguage} onValueChange={handleLanguageChange}>
-                  <SelectTrigger className="w-[140px] bg-secondary border-border">
+                  <SelectTrigger className="w-35 bg-secondary border-border">
                     <SelectValue placeholder="Language" />
                   </SelectTrigger>
                   <SelectContent>
@@ -120,7 +120,7 @@ export default function PracticePage() {
                   </SelectContent>
                 </Select>
                 <Select value={selectedDifficulty} onValueChange={handleDifficultyChange}>
-                  <SelectTrigger className="w-[140px] bg-secondary border-border">
+                  <SelectTrigger className="w-35 bg-secondary border-border">
                     <SelectValue placeholder="Difficulty" />
                   </SelectTrigger>
                   <SelectContent>

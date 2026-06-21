@@ -141,7 +141,7 @@ export default function LeaderboardPage() {
                             {getInitials(second.name)}
                           </AvatarFallback>
                         </Avatar>
-                        <span className="font-semibold text-sm sm:text-base truncate max-w-[100px]">
+                        <span className="font-semibold text-sm sm:text-base truncate max-w-30">
                           {second.name}
                         </span>
                         <span className="text-primary font-bold">{second.wpm} WPM</span>
@@ -161,7 +161,7 @@ export default function LeaderboardPage() {
                           </AvatarFallback>
                         </Avatar>
                       </motion.div>
-                      <span className="font-semibold text-base sm:text-lg truncate max-w-[120px]">
+                      <span className="font-semibold text-base sm:text-lg truncate max-w-30">
                         {first.name}
                       </span>
                       <span className="text-primary font-bold text-lg">{first.wpm} WPM</span>
@@ -178,7 +178,7 @@ export default function LeaderboardPage() {
                             {getInitials(third.name)}
                           </AvatarFallback>
                         </Avatar>
-                        <span className="font-semibold text-sm sm:text-base truncate max-w-[100px]">
+                        <span className="font-semibold text-sm sm:text-base truncate max-w-25">
                           {third.name}
                         </span>
                         <span className="text-primary font-bold">{third.wpm} WPM</span>

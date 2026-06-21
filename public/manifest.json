@@ -1,0 +1,38 @@
+{
+  "name": "CodeTyping AI - Code Typing Test & Practice for Developers",
+  "short_name": "CodeTyping AI",
+  "description": "Practice real code snippets in JavaScript, Python, TypeScript, C++, Java & PHP. Track WPM & accuracy, climb the global leaderboard.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#0a0a12",
+  "theme_color": "#0a0a12",
+  "categories": ["education", "developer tools", "productivity"],
+  "icons": [
+    {
+      "src": "/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/icon-maskable-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
+      "src": "/icon-maskable-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ]
+}
